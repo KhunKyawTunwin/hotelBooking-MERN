@@ -1,6 +1,5 @@
 import express from "express";
-// import dotenv from "dotenv/config";
-import "dotenv/config.js";
+import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./routes/auth.js";
 import usersRoute from "./routes/users.js";
@@ -8,25 +7,31 @@ import hotelsRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import cookieParser from "cookie-parser";
 
+dotenv.config();
+
 const app = express();
-// dotenv.config();
+
+// DATA Connection
 
 const connect = async () => {
   try {
     await mongoose.connect(process.env.MONGODB_URL);
-    console.log("Connected to MongoDB!");
+    console.log(`Connected Mogodb!`);
   } catch (error) {
     throw error;
   }
 };
+
 mongoose.connection.on("disconnected", () => {
   console.log("mongoDB Disconnected!");
 });
+
 mongoose.connection.on("connected", () => {
   console.log("mongoDB connected!");
 });
 
 // middlewares
+
 app.use(cookieParser());
 app.use(express.json());
 
@@ -49,5 +54,7 @@ app.use((err, req, res, next) => {
 
 app.listen(5000, () => {
   connect();
-  console.log("Local Server Start running at Port 5000!");
+  console.log(
+    `Local Server Start running at Port: http://localhost:${process.env.PORT}`
+  );
 });

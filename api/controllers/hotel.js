@@ -1,5 +1,7 @@
 import Hotel from "../models/Hotel.js";
 
+// Create New Hotels
+
 export const createHotel = async (req, res) => {
   const newHotel = new Hotel(req.body);
   try {
@@ -9,6 +11,8 @@ export const createHotel = async (req, res) => {
     next(err);
   }
 };
+
+// Updated Hotels
 
 export const updateHotel = async (req, res) => {
   try {
@@ -23,6 +27,8 @@ export const updateHotel = async (req, res) => {
   }
 };
 
+//  Delete Hotel List
+
 export const deleteHotel = async (req, res) => {
   try {
     await Hotel.findByIdAndDelete(req.params.id);
@@ -31,6 +37,8 @@ export const deleteHotel = async (req, res) => {
     next(err);
   }
 };
+
+// Get Hotel Individaul
 
 export const getHotel = async (req, res) => {
   try {
@@ -41,6 +49,7 @@ export const getHotel = async (req, res) => {
   }
 };
 
+// Get All Hotels
 export const getHotels = async (req, res) => {
   try {
     const hotels = await Hotel.find();
