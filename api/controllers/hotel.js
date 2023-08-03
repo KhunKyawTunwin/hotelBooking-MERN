@@ -50,6 +50,7 @@ export const getHotel = async (req, res) => {
 };
 
 // Get All Hotels
+
 export const getHotels = async (req, res) => {
   try {
     const hotels = await Hotel.find();

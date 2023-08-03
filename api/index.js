@@ -26,10 +26,6 @@ mongoose.connection.on("disconnected", () => {
   console.log("mongoDB Disconnected!");
 });
 
-mongoose.connection.on("connected", () => {
-  console.log("mongoDB connected!");
-});
-
 // middlewares
 
 app.use(cookieParser());
